@@ -31,9 +31,9 @@ MUPIBOX_URL=$(/usr/bin/jq -r .release.${RELEASE}[-1].url ${VER_JSON})  >&3 2>&3
 USER=$(/usr/bin/whoami) >&3 2>&3
 RASPPI=$(/usr/bin/cat /sys/firmware/devicetree/base/model | tr -d '\0' ) >&3 2>&3
 if [ "$1" = "dev" ]; then
-	MUPI_SRC="/home/dietpi/MuPiBox-main" >&3 2>&3
+	MUPI_SRC="/home/dietpi/MuPiBox-alpha2" >&3 2>&3
 else
-	MUPI_SRC="/home/dietpi/MuPiBox-${VERSION}" >&3 2>&3
+	MUPI_SRC="/home/dietpi/MuPiBox-alpha2" >&3 2>&3
 fi
 if [ "$1" = "dev" ]; then
 	VERSION_LONG="DEV $(curl -s "https://api.github.com/repos/brio1009/MuPiBox" | jq -r '.pushed_at' | cut -d'T' -f1)"  >&3 2>&3
@@ -220,7 +220,7 @@ echo "==========================================================================
 
 	echo -e "XXX\n${STEP}\nUnzip MuPiBox Version ${VERSION_LONG}... \nXXX"	
 	before=$(date +%s)
-	unzip -q -d /home/dietpi /home/dietpi/mupibox.zip >&3 2>&3
+	unzip -o -q -d /home/dietpi /home/dietpi/mupibox.zip >&3 2>&3
 	rm /home/dietpi/mupibox.zip >&3 2>&3
 
 	#MUPI_SRC="/home/dietpi/MuPiBox-${VERSION}"
