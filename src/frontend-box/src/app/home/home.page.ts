@@ -97,8 +97,8 @@ export class HomePage extends IonicSliderWorkaround {
     this.isOnline = toSignal(this.mediaService.isOnline())
 
     this.artists = toSignal(
-      combineLatest([toObservable(this.category), toObservable(this.isOnline)]).pipe(
-        map(([category, _isOnline]) => category),
+      combineLatest([toObservable(this.category), toObservable(this.isOnline), toObservable(this.pageIsShown)]).pipe(
+        map(([category, _isOnline, _pageIsShown]) => category),
         tap(() => this.isLoading.set(true)),
         switchMap((category) => {
           return this.mediaService.fetchArtistData(category).pipe(
@@ -128,9 +128,9 @@ export class HomePage extends IonicSliderWorkaround {
     // when switching categories.
     // Since we cannot have an effect without using the signals value, we convert it
     // to an observable here.
-    toObservable(this.isLoading)
-      .pipe(takeUntilDestroyed())
-      .subscribe(() => this.swiper().slideTo(0, 0))
+    // toObservable(this.isLoading)
+    // .pipe(takeUntilDestroyed())
+    // .subscribe(() => this.swiper().slideTo(0, 0))
   }
 
   public categoryChanged(event: any): void {
