@@ -12,7 +12,7 @@ import { SwiperContainer } from 'swiper/element'
 export class IonicSliderWorkaround {
   // This is a workaround for the slider bug that happens due to the way ionic handles
   // navigation, see https://github.com/ionic-team/ionic-framework/issues/10101
-  protected pageIsShown: WritableSignal<boolean> = signal(true)
+  protected pageIsShown: WritableSignal<boolean> = signal(false)
 
   protected swiper: Signal<Swiper> = computed(() => {
     return this.swiperElem()?.swiper
@@ -20,11 +20,9 @@ export class IonicSliderWorkaround {
   private swiperElem = viewChild<SwiperContainer>('swiper')
 
   public ionViewWillEnter(): void {
-    this.pageIsShown.set(true)
-    // Hopefully this activates the swiper after ionic navigation.
-    this.swiper().disable()
-    this.swiper().enable()
-    this.swiper().update()
+    setTimeout(() => {
+      this.pageIsShown.set(true)
+    }, 50)
   }
 
   public ionViewWillLeave(): void {
