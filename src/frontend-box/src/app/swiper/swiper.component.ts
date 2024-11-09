@@ -51,7 +51,9 @@ export class SwiperComponent<T> {
 
     effect(() => {
       if (this.pageIsShown()) {
-        this.swiper()?.update()
+        setTimeout(() => {
+          this.swiper()?.update()
+        }, 50)
       }
     })
   }
