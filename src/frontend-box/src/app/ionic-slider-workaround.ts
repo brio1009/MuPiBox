@@ -1,6 +1,7 @@
 import { Directive, ElementRef, Signal, WritableSignal, computed, signal, viewChild } from '@angular/core'
 
 import Swiper from 'swiper'
+import { SwiperContainer } from 'swiper/element'
 
 /**
  * This class provides a signal {@link pageIsShown} that is set to `true` when ionic shows
@@ -14,12 +15,13 @@ export class IonicSliderWorkaround {
   protected pageIsShown: WritableSignal<boolean> = signal(true)
 
   protected swiper: Signal<Swiper> = computed(() => {
-    return this.swiperElem()?.nativeElement.swiper
+    return this.swiperElem()?.swiper
   })
-  private swiperElem = viewChild<ElementRef>('swiper')
+  private swiperElem = viewChild<SwiperContainer>('swiper')
 
   public ionViewWillEnter(): void {
     this.pageIsShown.set(true)
+    this.swiperElem()?.initialize()
     // Hopefully this activates the swiper after ionic navigation.
     this.swiper().disable()
     this.swiper().enable()

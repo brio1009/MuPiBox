@@ -11,7 +11,7 @@
 <ion-content class="medialist-content">
   <mupi-loading [loading]="isLoading()"></mupi-loading>
   @if (pageIsShown()) {
-    <swiper-container slides-per-view="3" scrollbar="true" scrollbar-hide="true" free-mode="false" css-mode="true">
+    <swiper-container init="false" slides-per-view="3" scrollbar="true" scrollbar-hide="true" free-mode="false" css-mode="true">
       @for (currentMedia of media(); track currentMedia; let indexOfMedia = $index) {
         <swiper-slide>
           <ion-grid>
