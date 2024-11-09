@@ -21,7 +21,6 @@ export class IonicSliderWorkaround {
 
   public ionViewWillEnter(): void {
     this.pageIsShown.set(true)
-    this.swiperElem()?.initialize()
     // Hopefully this activates the swiper after ionic navigation.
     this.swiper().disable()
     this.swiper().enable()
