@@ -17,7 +17,7 @@ describe('SwiperComponent', () => {
 
     httpClient = TestBed.inject(HttpTestingController)
 
-    fixture = TestBed.createComponent(SwiperComponent)
+    fixture = TestBed.createComponent(SwiperComponent<void>)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

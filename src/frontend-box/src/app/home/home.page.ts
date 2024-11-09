@@ -56,7 +56,7 @@ import { MupiHatIconComponent } from '../mupihat-icon/mupihat-icon.component'
     SwiperComponent,
   ],
   standalone: true,
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePage {
   protected editButtonclickCount = 0
@@ -106,14 +106,6 @@ export class HomePage {
     effect(() => {
       this.mediaService.setCategory(this.category())
     })
-
-    // This is a fix for the swiper staying at a scrolled position
-    // when switching categories.
-    // Since we cannot have an effect without using the signals value, we convert it
-    // to an observable here.
-    // toObservable(this.isLoading)
-    // .pipe(takeUntilDestroyed())
-    // .subscribe(() => this.swiper().slideTo(0, 0))
   }
 
   protected categoryChanged(event: any): void {
