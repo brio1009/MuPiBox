@@ -38,15 +38,15 @@ fi
 rm "$WPACONF.bak"
 cp "$WPACONF" "$WPACONF.bak"
 add_config 'bgscan="simple:30:-70:60"'
-add_config 'roam_timeout=5'
-add_config 'disable_pm=1'
+#add_config 'roam_timeout=5'
+#add_config 'disable_pm=1'
 add_config 'ap_scan=1'
 
 in_network_block=0
 {
     while IFS= read -r line; do
         # Wenn ein network{}-Block beginnt
-        if [[ "$line" =~ ^network={ ]]; then
+        if [[ "$line" =~ ^network=\{ ]]; then
             in_network_block=1
             echo "$line" 
             scan_ssid_found=0
@@ -56,11 +56,11 @@ in_network_block=0
         if [[ $in_network_block -eq 1 ]]; then
             if [[ "$line" =~ ^\} ]]; then
                 if [[ $scan_ssid_found -eq 0 ]]; then
-                    echo "    scan_ssid=1"
+                    echo "	scan_ssid=1"
                 fi
                 in_network_block=0
             fi
-            if [[ "$line" =~ ^\s*scan_ssid=1 ]]; then
+            if [[ "$line" =~ ^[[:space:]]*scan_ssid=1 ]]; then
                 scan_ssid_found=1
             fi
         fi
