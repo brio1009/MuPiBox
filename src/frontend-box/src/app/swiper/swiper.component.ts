@@ -14,7 +14,6 @@ import {
 import { IonCard, IonCardHeader, IonCardTitle, IonCol, IonGrid, IonRow } from '@ionic/angular/standalone'
 
 import { AsyncPipe } from '@angular/common'
-import { cloneDeep } from 'lodash-es'
 import { Observable } from 'rxjs'
 import { PlayerService } from '../player.service'
 import { cloneDeep } from 'lodash-es'
